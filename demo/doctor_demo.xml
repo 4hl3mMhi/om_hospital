@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- demo data for doctors. -->
+        <record id="doctor_one" model="doctor.doctor">
+            <field name="name">Eiko YOSHIZAWA</field>
+            <field name="code">EY32A</field>
+            <field name="image_1920" type="base64" file="om_hospital/static/src/img/doctor_img/EY32A.jpg"/>
+        </record>
+        <record id="doctor_two" model="doctor.doctor">
+            <field name="name">Ryosuke OSAWA</field>
+            <field name="code">RO96W</field>
+            <field name="image_1920" type="base64" file="om_hospital/static/src/img/doctor_img/RO96W.jpg"/>
+        </record>
+        <record id="doctor_three" model="doctor.doctor">
+            <field name="name">Ryota HASE</field>
+            <field name="code">RH75SE</field>
+            <field name="image_1920" type="base64" file="om_hospital/static/src/img/doctor_img/RH75SE.jpg"/>
+        </record>
+        <record id="doctor_four" model="doctor.doctor">
+            <field name="name">Kayo MIZUTANI</field>
+            <field name="code">KZ88UN</field>
+            <field name="image_1920" type="base64" file="om_hospital/static/src/img/doctor_img/KZ88UN.jpg"/>
+        </record>
+        <record id="doctor_five" model="doctor.doctor">
+            <field name="name">Masaki OHASHI</field>
+            <field name="code">MO693I</field>
+            <field name="image_1920" type="base64" file="om_hospital/static/src/img/doctor_img/MO693I.jpg"/>
+        </record>
+    </data>
+</odoo>

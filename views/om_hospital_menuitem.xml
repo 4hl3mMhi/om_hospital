@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem id="menu_root_hospital" name="OM Hospital"
+                  web_icon="om_hospital,static/description/icon.png"
+                  sequence="0"
+                  groups="base.group_user"/>
+
+        <!-- menu categories -->
+        <menuitem id="menu_patient" name="Patients" parent="menu_root_hospital" sequence="1"/>
+        <menuitem id="menu_doctor" name="Doctors" parent="menu_root_hospital" sequence="2"/>
+
+        <!-- menu actions -->
+        <menuitem id="menu_action_patient" parent="menu_patient" action="action_patient_form" sequence="1"/>
+        <menuitem id="menu_action_doctor" parent="menu_doctor" action="action_doctor_form" sequence="1"/>
+    </data>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_patient_form" model="ir.ui.view">
+            <field name="name">patient.patient.form</field>
+            <field name="model">patient.patient</field>
+            <field name="arch" type="xml">
+                <form string="Patient">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <label for="email" class="oe_edit_only"/>
+                            <h2><field name="email"/></h2>
+                        </div>
+                        <group>
+                            <field name="doctor_id" widget="selection"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_patient_list" model="ir.ui.view">
+            <field name="name">patient.patient.list</field>
+            <field name="model">patient.patient</field>
+            <field name="arch" type="xml">
+                <tree string="Hospital Patients">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="doctor_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_patient_search" model="ir.ui.view">
+            <field name="name">patient.patient.search</field>
+            <field name="model">patient.patient</field>
+            <field name="arch" type="xml">
+                <search string="Patients">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="doctor_id"/>
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter string="Doctor" name="group_by_doctor" context="{'group_by': 'doctor_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_patient_form" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">patient.patient</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_patient_search"/>
+            <field name="view_id" ref="view_patient_list"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Patient
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

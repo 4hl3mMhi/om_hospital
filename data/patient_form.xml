@@ -1,0 +1,58 @@
+<?xml version="1.8" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add dynamic selection field in odoo website form, 'doctor_id'-->
+        <record id="create_patient" model="ir.ui.view">
+            <field name="name">Create Patient</field>
+            <field name="type">qweb</field>
+            <field name="key">om_hospital.create_patient</field>
+            <field name="arch" type="xml">
+                <t name="Create Patient" priority="29" t-name="om_hospital.create_patient">
+                    <t t-call="website.layout">
+                        <t t-set="pageName" t-value="'create_patient'"/>
+                        <div class="container oe_container_div">
+                            <form role="form" action="/create/webpatient" method="POST">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group">
+                                    <label for="patient_name" class="control-label">Patient Name</label>
+                                    <input type="text" name="name" t-att-value="patient_name" id="patient_name"
+                                           class="form-control" placeholder="e.g. John Doe" required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="control-label">Email Address</label>
+                                    <input type="email" name="email" t-att-value="email_id" id="email_id"
+                                           class="form-control" placeholder="e.g. john_doe@gmail.com"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="doctor_id" class="control-label">Doctor</label>
+                                    <select name="doctor_id" class="form-control link-style">
+                                        <option value="">Select...</option>
+                                        <t t-foreach="doctors or []" t-as="doctor">
+                                            <option t-esc="doctor.name" t-att-value="doctor.id"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="clearfix oe_login_buttons">
+                                    <button type="submit" class="btn btn-primary pull-left">Create Patient</button>
+                                </div>
+                            </form>
+                        </div>
+                    </t>
+                </t>
+            </field>
+        </record>
+
+        <template id="patient_thanks" name="Patient Thanks">
+            <t t-call="website.layout">
+                <div class="container oe_container_div">
+                    <h1>Thanks!</h1>
+                    <p class="oe_thanks_p">
+                        The Patient has been Created Successfully.
+                    </p>
+                    <p>Visit Hospital AT ANY Time.</p>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

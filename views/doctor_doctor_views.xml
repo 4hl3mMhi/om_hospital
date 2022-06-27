@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_doctor_list" model="ir.ui.view">
+            <field name="name">doctor.doctor.list</field>
+            <field name="model">doctor.doctor</field>
+            <field name="arch" type="xml">
+                <tree string="Doctors">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_doctor_search" model="ir.ui.view">
+            <field name="name">doctor.doctor.search</field>
+            <field name="model">doctor.doctor</field>
+            <field name="arch" type="xml">
+                <search string="Doctors">
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record><record id="view_doctor_kanban" model="ir.ui.view">
+            <field name="name">doctor.doctor.kanban</field>
+            <field name="model">doctor.doctor</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <div class="o_kanban_image_fill_left o_kanban_image_full" role="img"
+                                     t-attf-style="background-image: url(#{kanban_image('doctor.doctor', 'image_128', record.id.raw_value, placeholder)})"/>
+                                <div class="oe_kanban_details d-flex flex-column">
+                                    <strong><field name="display_name"/></strong>
+                                    <ul>
+                                        <li t-if="record.code.raw_value" class="o_text_overflow"><field name="code"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_doctor_form" model="ir.ui.view">
+            <field name="name">doctor.doctor.form</field>
+            <field name="model">doctor.doctor</field>
+            <field name="arch" type="xml">
+                <form string="Doctor">
+                    <sheet>
+                        <field name="image_1920" readonly="0" widget='image' class="oe_right oe_avatar" options='{"preview_image": "image_128"}'/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <label for="code" class="oe_edit_only"/>
+                            <h2><field name="code"/></h2>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_doctor_form" model="ir.actions.act_window">
+            <field name="name">Doctors</field>
+            <field name="res_model">doctor.doctor</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_doctor_search"/>
+            <field name="view_id" ref="view_doctor_kanban"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Doctor
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
